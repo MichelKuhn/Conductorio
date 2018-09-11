@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 
 public class GameScreen implements Screen {
     final Conductorio game;
@@ -18,6 +19,9 @@ public class GameScreen implements Screen {
     private Rectangle currentDude;
     private Rectangle textField;
     private Rectangle stats;
+
+    private TextBox leftBox;
+    private TextBox rightBox;
 
     private Card card;
 
@@ -39,7 +43,7 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-        dude1 = new Texture(Gdx.files.internal("dude1.jpg"));
+        dude1 = new Texture(Gdx.files.internal("dude2.jpg"));
         textfieldTexture = new Texture(Gdx.files.internal("textfield.jpg"));
         statsTexture = new Texture(Gdx.files.internal("stats.jpg"));
 
@@ -54,6 +58,9 @@ public class GameScreen implements Screen {
         stats = new Rectangle();
         stats.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
         stats.y = Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS;
+
+        leftBox = new TextBox(16, getTextfieldWriteHeight() - 32, "Die Aktion durchführen");
+        rightBox = new TextBox(Constants.SCREEN_WIDTH - 16 - 64, getTextfieldWriteHeight() - 32, "Die Aktion durchführen");
 
         card = new Card("Do stuff", new Choice("DO", 10, 0, 0, 0), new Choice("STUFF", 0, 0, 0, 10));
         Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
@@ -88,7 +95,24 @@ public class GameScreen implements Screen {
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getInfluence()), getWriteStartX() + Constants.STATS_ROOM * 3, getStatsWriteHeight());
+        if (leftBox.isVisible()) {
+            game.font.draw(game.batch, leftBox.getText(), leftBox.getX(), leftBox.getY(), leftBox.getWidth(), 10, true);
+        } else if (rightBox.isVisible()) {
+            game.font.draw(game.batch, rightBox.getText(), rightBox.getX(), rightBox.getY(), rightBox.getWidth(), 10, true);
+        }
         game.batch.end();
+
+        if(Gdx.input.isTouched()) {
+            Vector3 touchPos = new Vector3();
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            if (touchPos.x < Constants.SCREEN_WIDTH / 2) {
+                leftBox.setVisible(true);
+                rightBox.setVisible(false);
+            } else {
+                leftBox.setVisible(false);
+                rightBox.setVisible(true);
+            }
+        }
     }
 
     @Override
