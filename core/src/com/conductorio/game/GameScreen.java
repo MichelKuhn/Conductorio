@@ -2,9 +2,11 @@ package com.conductorio.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -24,9 +26,10 @@ public class GameScreen implements Screen {
     private TextBox rightBox;
 
     private Card card;
+    private Side pickedSide;
 
     private int getTextfieldWriteHeight() {
-        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT - Constants.TEXTFIELD_BORDER;
+        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT - Constants.BORDER;
     }
 
     private int getStatsWriteHeight() {
@@ -34,10 +37,10 @@ public class GameScreen implements Screen {
     }
 
     private int getWriteStartX() {
-        return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.TEXTFIELD_BORDER;
+        return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.BORDER;
     }
 
-    public GameScreen(final Conductorio game) {
+    GameScreen(final Conductorio game) {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -59,8 +62,8 @@ public class GameScreen implements Screen {
         stats.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
         stats.y = Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS;
 
-        leftBox = new TextBox(16, getTextfieldWriteHeight() - 32, "Die Aktion durchführen");
-        rightBox = new TextBox(Constants.SCREEN_WIDTH - 16 - 64, getTextfieldWriteHeight() - 32, "Die Aktion durchführen");
+        leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
+        rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
 
         card = new Card("Do stuff", new Choice("DO", 10, 0, 0, 0), new Choice("STUFF", 0, 0, 0, 10));
         Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
@@ -78,6 +81,25 @@ public class GameScreen implements Screen {
         }));
     }
 
+    private void renderBackgroundBoxes() {
+        game.batch.begin();
+        game.batch.draw(dude1, currentDude.x, currentDude.y);
+        game.batch.draw(textfieldTexture, textField.x, textField.y);
+        game.batch.draw(statsTexture, stats.x, stats.y);
+        game.batch.end();
+    }
+
+    private void renderChoiceBackgroundBoxes() {
+        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        game.shapeRenderer.setColor(Color.DARK_GRAY);
+        if (pickedSide == Side.LEFT) {
+            game.shapeRenderer.rect(leftBox.getX(), leftBox.getY() - Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE);
+        } else if (pickedSide == Side.RIGHT) {
+            game.shapeRenderer.rect(rightBox.getX(), rightBox.getY() - Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE);
+        }
+        game.shapeRenderer.end();
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
@@ -86,32 +108,34 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        renderBackgroundBoxes();
+        renderChoiceBackgroundBoxes();
+
         game.batch.begin();
-        game.batch.draw(dude1, currentDude.x, currentDude.y);
-        game.batch.draw(textfieldTexture, textField.x, textField.y);
-        game.batch.draw(statsTexture, stats.x, stats.y);
         game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getMoney()), getWriteStartX(), getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getInfluence()), getWriteStartX() + Constants.STATS_ROOM * 3, getStatsWriteHeight());
-        if (leftBox.isVisible()) {
-            game.font.draw(game.batch, leftBox.getText(), leftBox.getX(), leftBox.getY(), leftBox.getWidth(), 10, true);
-        } else if (rightBox.isVisible()) {
-            game.font.draw(game.batch, rightBox.getText(), rightBox.getX(), rightBox.getY(), rightBox.getWidth(), 10, true);
+
+        if (pickedSide == Side.LEFT) {
+            game.font.draw(game.batch, leftBox.getText(), leftBox.getX() + Constants.FONT_BORDER, leftBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
+        } else if (pickedSide == Side.RIGHT) {
+            game.font.draw(game.batch, rightBox.getText(), rightBox.getX() + Constants.FONT_BORDER, rightBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
         }
+
         game.batch.end();
 
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             if (touchPos.x < Constants.SCREEN_WIDTH / 2) {
-                leftBox.setVisible(true);
-                rightBox.setVisible(false);
+                pickedSide = Side.LEFT;
             } else {
-                leftBox.setVisible(false);
-                rightBox.setVisible(true);
+                pickedSide = Side.RIGHT;
             }
+        } else {
+            pickedSide = Side.NONE;
         }
     }
 
