@@ -14,11 +14,9 @@ public class GameScreen implements Screen {
     final Conductorio game;
     private OrthographicCamera camera;
 
-    private Texture dude1;
     private Texture textfieldTexture;
     private Texture statsTexture;
 
-    private Rectangle currentDude;
     private Rectangle textField;
     private Rectangle stats;
 
@@ -26,6 +24,7 @@ public class GameScreen implements Screen {
     private TextBox rightBox;
 
     private Card card;
+    private Dude dude;
     private Side pickedSide;
 
     private int getTextfieldWriteHeight() {
@@ -40,19 +39,21 @@ public class GameScreen implements Screen {
         return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.BORDER;
     }
 
+    private void drawNewCard() {
+        card = Player.getInstance().getCard();
+        leftBox.setText(card.getLeft().getText());
+        rightBox.setText(card.getRight().getText());
+    }
+
     GameScreen(final Conductorio game) {
         this.game = game;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-        dude1 = new Texture(Gdx.files.internal("dude2.jpg"));
+        dude = new Dude(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE, new Texture(Gdx.files.internal("dude1.jpg")));
         textfieldTexture = new Texture(Gdx.files.internal("textfield.jpg"));
         statsTexture = new Texture(Gdx.files.internal("stats.jpg"));
-
-        currentDude = new Rectangle();
-        currentDude.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
-        currentDude.y = Constants.FLOOR_TO_DUDE;
 
         textField = new Rectangle();
         textField.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
@@ -70,20 +71,20 @@ public class GameScreen implements Screen {
             @Override
             public void onRight() {
                 card.getRight().pick();
-                card = Player.getInstance().getCard();
+                drawNewCard();
             }
 
             @Override
             public void onLeft() {
                 card.getLeft().pick();
-                card = Player.getInstance().getCard();
+                drawNewCard();
             }
         }));
     }
 
     private void renderBackgroundBoxes() {
         game.batch.begin();
-        game.batch.draw(dude1, currentDude.x, currentDude.y);
+        game.batch.draw(dude.getFace(), dude.getX(), dude.getY());
         game.batch.draw(textfieldTexture, textField.x, textField.y);
         game.batch.draw(statsTexture, stats.x, stats.y);
         game.batch.end();
@@ -100,6 +101,22 @@ public class GameScreen implements Screen {
         game.shapeRenderer.end();
     }
 
+    private void drawStatsAndStuff() {
+        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight());
+        game.font.draw(game.batch, Integer.toString(Player.getInstance().getMoney()), getWriteStartX(), getStatsWriteHeight());
+        game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
+        game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
+        game.font.draw(game.batch, Integer.toString(Player.getInstance().getInfluence()), getWriteStartX() + Constants.STATS_ROOM * 3, getStatsWriteHeight());
+    }
+
+    private void drawChoiceText() {
+        if (pickedSide == Side.LEFT) {
+            game.font.draw(game.batch, leftBox.getText(), leftBox.getX() + Constants.FONT_BORDER, leftBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
+        } else if (pickedSide == Side.RIGHT) {
+            game.font.draw(game.batch, rightBox.getText(), rightBox.getX() + Constants.FONT_BORDER, rightBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
+        }
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
@@ -112,18 +129,8 @@ public class GameScreen implements Screen {
         renderChoiceBackgroundBoxes();
 
         game.batch.begin();
-        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getMoney()), getWriteStartX(), getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getInfluence()), getWriteStartX() + Constants.STATS_ROOM * 3, getStatsWriteHeight());
-
-        if (pickedSide == Side.LEFT) {
-            game.font.draw(game.batch, leftBox.getText(), leftBox.getX() + Constants.FONT_BORDER, leftBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
-        } else if (pickedSide == Side.RIGHT) {
-            game.font.draw(game.batch, rightBox.getText(), rightBox.getX() + Constants.FONT_BORDER, rightBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
-        }
-
+        drawStatsAndStuff();
+        drawChoiceText();
         game.batch.end();
 
         if(Gdx.input.isTouched()) {

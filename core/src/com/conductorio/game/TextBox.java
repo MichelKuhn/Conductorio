@@ -1,24 +1,13 @@
 package com.conductorio.game;
 
-public class TextBox {
-    private int x;
-    private int y;
+public class TextBox extends Widget {
     private String text;
     private boolean visible;
 
     TextBox(int x, int y, String text) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.text = text;
         this.visible = false;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public String getText() {
