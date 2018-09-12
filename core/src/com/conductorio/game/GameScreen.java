@@ -7,24 +7,23 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.conductorio.game.Widgets.DudeField;
+import com.conductorio.game.Widgets.FieldBackground;
+import com.conductorio.game.Widgets.TextBox;
 
 public class GameScreen implements Screen {
     final Conductorio game;
     private OrthographicCamera camera;
 
-    private Texture textfieldTexture;
-    private Texture statsTexture;
-
-    private Rectangle textField;
-    private Rectangle stats;
+    private DudeField dudeField;
+    private FieldBackground textField;
+    private FieldBackground statsField;
 
     private TextBox leftBox;
     private TextBox rightBox;
 
     private Card card;
-    private Dude dude;
     private Side pickedSide;
 
     private int getTextfieldWriteHeight() {
@@ -41,6 +40,7 @@ public class GameScreen implements Screen {
 
     private void drawNewCard() {
         card = Player.getInstance().getCard();
+        dudeField.setCharacter(card.getCharacter());
         leftBox.setText(card.getLeft().getText());
         rightBox.setText(card.getRight().getText());
     }
@@ -51,22 +51,15 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-        dude = new Dude(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE, new Texture(Gdx.files.internal("dude1.jpg")));
-        textfieldTexture = new Texture(Gdx.files.internal("textfield.jpg"));
-        statsTexture = new Texture(Gdx.files.internal("stats.jpg"));
+        card = Player.getInstance().getCard();
 
-        textField = new Rectangle();
-        textField.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
-        textField.y = Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT;
-
-        stats = new Rectangle();
-        stats.x = Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2;
-        stats.y = Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS;
+        dudeField = new DudeField(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE, card.getCharacter());
+        textField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT, new Texture(Gdx.files.internal("textfield.jpg")));
+        statsField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS, new Texture(Gdx.files.internal("stats.jpg")));
 
         leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
         rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
 
-        card = new Card("Do stuff", new Choice("DO", 10, 0, 0, 0), new Choice("STUFF", 0, 0, 0, 10));
         Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
             @Override
             public void onRight() {
@@ -84,9 +77,9 @@ public class GameScreen implements Screen {
 
     private void renderBackgroundBoxes() {
         game.batch.begin();
-        game.batch.draw(dude.getFace(), dude.getX(), dude.getY());
-        game.batch.draw(textfieldTexture, textField.x, textField.y);
-        game.batch.draw(statsTexture, stats.x, stats.y);
+        game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY());
+        game.batch.draw(textField.getTexture(), textField.getX(), textField.getY());
+        game.batch.draw(statsField.getTexture(), statsField.getX(), statsField.getY());
         game.batch.end();
     }
 

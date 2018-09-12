@@ -4,8 +4,8 @@ public final class Constants {
     public static final int SCREEN_HEIGHT = 568;
     public static final int SCREEN_WIDTH = 320;
 
-    public static final int BORDER = SCREEN_WIDTH / 20;
-    public static final int FONT_BORDER = BORDER / 2;
+    public static final int BORDER = SCREEN_WIDTH / 20;     //16
+    public static final int FONT_BORDER = BORDER / 2;       // 8
 
     public static final int CHOICE_BOX_SIZE = 96;
 
