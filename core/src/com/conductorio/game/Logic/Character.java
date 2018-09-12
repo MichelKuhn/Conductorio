@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
 

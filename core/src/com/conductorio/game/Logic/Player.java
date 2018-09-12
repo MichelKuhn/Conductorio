@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Logic;
 
 public class Player {
     private int money;
@@ -25,7 +25,17 @@ public class Player {
     }
 
     public Card getCard() {
-        return cardStash.drawCard();
+        if(money <= 0) {
+            return (cardStash.getLoserCard(Category.MONEY));
+        } else if (legal <= 0) {
+            return (cardStash.getLoserCard(Category.LEGAL));
+        }else if (satisfaction <= 0) {
+            return (cardStash.getLoserCard(Category.SATISFACTION));
+        }else if (influence <= 0) {
+            return (cardStash.getLoserCard(Category.INFLUENCE));
+        } else {
+            return cardStash.drawCard();
+        }
     }
 
     public int getMoney() {
@@ -53,22 +63,26 @@ public class Player {
 
     public void addLegal(int legal) {
         this.legal += legal;
-        if(money > 100) {
+        if(legal > 100) {
             this.legal = 100;
         }
     }
 
     public void addSatisfaction(int satisfaction) {
         this.satisfaction += satisfaction;
-        if(money > 100) {
+        if(satisfaction > 100) {
             this.satisfaction = 100;
         }
     }
 
     public void addInfluence(int influence) {
         this.influence += influence;
-        if(money > 100) {
+        if(influence > 100) {
             this.influence = 100;
         }
+    }
+
+    public static void reset() {
+        instance = new Player();
     }
 }

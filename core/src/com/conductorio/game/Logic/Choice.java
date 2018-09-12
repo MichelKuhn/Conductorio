@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Logic;
 
 public class Choice {
     private String text;
@@ -7,7 +7,7 @@ public class Choice {
     private int satisfaction;
     private int influence;
 
-    public Choice(String text, int money, int legal, int satisfaction, int influence) {
+    Choice(String text, int money, int legal, int satisfaction, int influence) {
         this.text = text;
         this.money = money;
         this.legal = legal;
@@ -15,11 +15,13 @@ public class Choice {
         this.influence = influence;
     }
 
-    public void pick() {
+    public boolean pick() {
         Player.getInstance().addMoney(money);
         Player.getInstance().addLegal(legal);
         Player.getInstance().addSatisfaction(satisfaction);
         Player.getInstance().addInfluence(influence);
+
+        return true;
     }
 
     public String getText() {

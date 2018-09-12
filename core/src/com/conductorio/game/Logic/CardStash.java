@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Logic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -39,5 +39,21 @@ public class CardStash {
 
     public Card drawCard() {
         return basicCards.get(rand.nextInt(basicCards.size()));
+    }
+
+    public Card getLoserCard(Category category) {
+        LoserChoice lc = new LoserChoice();
+        switch (category) {
+            case MONEY:
+                return new Card(tom, "Kein Geld mehr", lc, lc);
+            case LEGAL:
+                return new Card(tom, "Kein Legal mehr", lc, lc);
+            case SATISFACTION:
+                return new Card(tom, "Kein Satisfaction mehr", lc, lc);
+            case INFLUENCE:
+                return new Card(tom, "Kein Influence mehr", lc, lc);
+            default:
+                return null;
+        }
     }
 }

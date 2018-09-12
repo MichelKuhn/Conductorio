@@ -1,7 +1,7 @@
 package com.conductorio.game.Widgets;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.conductorio.game.Character;
+import com.conductorio.game.Logic.Character;
 
 public class DudeField extends Widget {
     private Character character;

@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Techstuff;
 
 import com.badlogic.gdx.input.GestureDetector;
 
@@ -15,7 +15,7 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
     private static class DirectionGestureListener extends GestureAdapter{
         DirectionListener directionListener;
 
-        public DirectionGestureListener(DirectionListener directionListener){
+        DirectionGestureListener(DirectionListener directionListener){
             this.directionListener = directionListener;
         }
 
@@ -27,13 +27,7 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
                 }else{
                     directionListener.onLeft();
                 }
-            } /**else{          Maybe Zukunft
-                if(velocityY>0){
-                    directionListener.onDown();
-                }else{
-                    directionListener.onUp();
-                }
-            } **/
+            }
             return super.fling(velocityX, velocityY, button);
         }
     }

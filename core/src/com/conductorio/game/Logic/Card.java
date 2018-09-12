@@ -1,4 +1,4 @@
-package com.conductorio.game;
+package com.conductorio.game.Logic;
 
 public class Card {
     private Character character;
