@@ -15,6 +15,7 @@ import com.conductorio.game.Techstuff.SimpleDirectionGestureDetector;
 import com.conductorio.game.Widgets.DudeField;
 import com.conductorio.game.Widgets.FieldBackground;
 import com.conductorio.game.Widgets.TextBox;
+import com.conductorio.game.Widgets.ValueCounter;
 
 public class GameScreen implements Screen {
     private final Conductorio game;
@@ -22,7 +23,11 @@ public class GameScreen implements Screen {
 
     private DudeField dudeField;
     private FieldBackground textField;
-    private FieldBackground statsField;
+
+    private ValueCounter moneyCounter;
+    private ValueCounter legalCounter;
+    private ValueCounter satisfactionCounter;
+    private ValueCounter influenceCounter;
 
     private TextBox leftBox;
     private TextBox rightBox;
@@ -35,14 +40,24 @@ public class GameScreen implements Screen {
     }
 
     private int getStatsWriteHeight() {
-        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS + Constants.STATS_HEIGHT - Constants.STATS_BORDER;
+        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS;
     }
 
     private int getWriteStartX() {
         return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.BORDER;
     }
 
+    private int getStatsStartX(int borderNumbers) {
+        return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.STATS_BORDER * borderNumbers;
+    }
+
     private void drawNewCard() {
+        Player player = Player.getInstance();
+        moneyCounter.setValue(player.getMoney());
+        legalCounter.setValue(player.getLegal());
+        satisfactionCounter.setValue(player.getSatisfaction());
+        influenceCounter.setValue(player.getInfluence());
+
         card = Player.getInstance().getCard();
         dudeField.setCharacter(card.getCharacter());
         leftBox.setText(card.getLeft().getText());
@@ -68,8 +83,11 @@ public class GameScreen implements Screen {
 
         dudeField = new DudeField(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE, card.getCharacter());
         textField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT, new Texture(Gdx.files.internal("textfield.jpg")));
-        statsField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS, new Texture(Gdx.files.internal("stats.jpg")));
 
+        moneyCounter = new ValueCounter(getStatsStartX(1), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/money.png")), new Texture(Gdx.files.internal("statsTextures/moneyWhite.png")));
+        legalCounter = new ValueCounter(getStatsStartX(5), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/legal.png")), new Texture(Gdx.files.internal("statsTextures/legalWhite.png")));
+        satisfactionCounter = new ValueCounter(getStatsStartX(9), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/satisfaction.png")), new Texture(Gdx.files.internal("statsTextures/satisfactionWhite.png")));
+        influenceCounter = new ValueCounter(getStatsStartX(13), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/influence.png")), new Texture(Gdx.files.internal("statsTextures/influenceWhite.png")));
         leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, card.getLeft().getText());
         rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, card.getRight().getText());
 
@@ -98,7 +116,6 @@ public class GameScreen implements Screen {
         game.batch.begin();
         game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY(), Constants.DUDE_BOX_SIZE, Constants.DUDE_BOX_SIZE);
         game.batch.draw(textField.getTexture(), textField.getX(), textField.getY());
-        game.batch.draw(statsField.getTexture(), statsField.getX(), statsField.getY());
         game.batch.end();
     }
 
@@ -113,12 +130,17 @@ public class GameScreen implements Screen {
         game.shapeRenderer.end();
     }
 
+    private void drawValueCounter(ValueCounter valueCounter) {
+        game.batch.draw(valueCounter.getTextureWhite(), valueCounter.getX(), valueCounter.getY(), Constants.VALUE_COUNTER_SIZE, Constants.VALUE_COUNTER_SIZE);
+        game.batch.draw(valueCounter.getTexture(), valueCounter.getX(), valueCounter.getY() + valueCounter.getValueInPx(), 0, 0, Constants.VALUE_COUNTER_SIZE, Constants.VALUE_COUNTER_SIZE - valueCounter.getValueInPx());
+    }
+
     private void drawStatsAndStuff() {
         game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight(), Constants.DUDE_BOX_SIZE - Constants.BORDER * 2, 10, true);
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getMoney()), getWriteStartX(), getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
-        game.font.draw(game.batch, Integer.toString(Player.getInstance().getInfluence()), getWriteStartX() + Constants.STATS_ROOM * 3, getStatsWriteHeight());
+        drawValueCounter(moneyCounter);
+        drawValueCounter(legalCounter);
+        drawValueCounter(satisfactionCounter);
+        drawValueCounter(influenceCounter);
     }
 
     private void drawChoiceText() {

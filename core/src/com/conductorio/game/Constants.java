@@ -6,6 +6,7 @@ public final class Constants {
 
     public static final int BORDER = SCREEN_WIDTH / 20;     //16
     public static final int FONT_BORDER = BORDER / 2;       // 8
+    public static final int VALUE_COUNTER_SIZE = 32;
 
     public static final int CHOICE_BOX_SIZE = 96;
 
@@ -18,7 +19,7 @@ public final class Constants {
 
     public static final int STATS_HEIGHT = 32;
     public static final int STATS_ROOM = 56;
-    public static final int STATS_BORDER = 8;
+    public static final int STATS_BORDER = 16;
 
     private Constants(){
         throw new AssertionError();
