@@ -1,0 +1,16 @@
+<cards>
+    <card text="Der Minister braucht Geld." character="Tom">
+        <choiceLeft text="Geben">
+            <money>-10</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>20</influence>
+        </choiceLeft>
+        <choiceRight text="Nicht geben.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-10</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+</cards>

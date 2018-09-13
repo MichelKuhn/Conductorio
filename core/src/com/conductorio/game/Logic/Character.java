@@ -6,7 +6,7 @@ public class Character {
     private String name;
     private Texture face;
 
-    Character(String name, Texture face) {
+    public Character(String name, Texture face) {
         this.name = name;
         this.face = face;
     }

@@ -6,7 +6,7 @@ public class Card {
     private Choice left;
     private Choice right;
 
-    Card(Character character, String text, Choice left, Choice right) {
+    public Card(Character character, String text, Choice left, Choice right) {
         this.character = character;
         this.text = text;
         this.left = left;

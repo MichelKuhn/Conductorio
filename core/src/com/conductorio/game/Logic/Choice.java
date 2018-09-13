@@ -7,7 +7,7 @@ public class Choice {
     private int satisfaction;
     private int influence;
 
-    Choice(String text, int money, int legal, int satisfaction, int influence) {
+    public Choice(String text, int money, int legal, int satisfaction, int influence) {
         this.text = text;
         this.money = money;
         this.legal = legal;

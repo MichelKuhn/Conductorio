@@ -4,12 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.conductorio.game.Techstuff.CardDeckLoader;
 
 public class MainMenuScreen implements Screen {
-    final Conductorio game;
-    OrthographicCamera camera;
+    private final Conductorio game;
+    private OrthographicCamera camera;
 
-    public MainMenuScreen(final Conductorio game) {
+    MainMenuScreen(final Conductorio game) {
         this.game = game;
 
         camera = new OrthographicCamera();
