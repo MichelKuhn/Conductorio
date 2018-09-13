@@ -16,6 +16,7 @@ public class Conductorio extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		font.getData().setScale(2, 2);
 		shapeRenderer = new ShapeRenderer();
 		tutorial = true;
 		this.setScreen(new MainMenuScreen(this));

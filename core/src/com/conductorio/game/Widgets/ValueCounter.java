@@ -1,17 +1,31 @@
 package com.conductorio.game.Widgets;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.conductorio.game.Constants;
 
 public class ValueCounter extends Widget {
     private int value;
+    private int size;
     private Texture texture, textureWhite;
 
-    public ValueCounter(int x, int y, Texture texture, Texture textureWhite) {
+    private Texture scaleImg(String path) {
+        Pixmap normalPixmap = new Pixmap(Gdx.files.internal(path));
+        Pixmap pixmapNormalScaled = new Pixmap(size, size, normalPixmap.getFormat());
+        pixmapNormalScaled.drawPixmap(normalPixmap,
+                0, 0, normalPixmap.getWidth(), normalPixmap.getHeight(),
+                0, 0, pixmapNormalScaled.getWidth(), pixmapNormalScaled.getHeight()
+        );
+
+        return new Texture(pixmapNormalScaled);
+    }
+
+    public ValueCounter(int x, int y, String pathNormal, String pathWhite, int size) {
         super(x, y);
         this.value = 50;
-        this.texture = texture;
-        this.textureWhite = textureWhite;
+        this.size = size;
+        texture = scaleImg(pathNormal);
+        textureWhite = scaleImg(pathWhite);
     }
 
     public int getValue() {
@@ -31,6 +45,6 @@ public class ValueCounter extends Widget {
     }
 
     public int getValueInPx() {
-        return value * Constants.VALUE_COUNTER_SIZE / 100;
+        return value * size / 100;
     }
 }
