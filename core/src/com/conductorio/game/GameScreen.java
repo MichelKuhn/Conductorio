@@ -92,7 +92,7 @@ public class GameScreen implements Screen {
 
     private void renderBackgroundBoxes() {
         game.batch.begin();
-        game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY());
+        game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY(), Constants.DUDE_BOX_SIZE, Constants.DUDE_BOX_SIZE);
         game.batch.draw(textField.getTexture(), textField.getX(), textField.getY());
         game.batch.draw(statsField.getTexture(), statsField.getX(), statsField.getY());
         game.batch.end();

@@ -29,7 +29,7 @@ public class CardDeckLoader {
         String name = node.getText();
         String file = node.getAttribute("file");
 
-        return new Character(name, new Texture(Gdx.files.internal(file)));
+        return new Character(name, new Texture(Gdx.files.internal("characterTextures/" + file)));
     }
 
     private Choice getChoiceFromXml(XmlReader.Element node) {

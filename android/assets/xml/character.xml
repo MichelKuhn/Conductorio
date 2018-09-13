@@ -1,5 +1,6 @@
 <characters>
-    <character file="dude1.jpg">Tom</character>
-    <character file="dude2.jpg">Jeff</character>
-    <character file="dude3.jpg">Marla</character>
+    <character file="tom.png">Tom</character>
+    <character file="jeff.png">Jeff</character>
+    <character file="marla.png">Marla</character>
+    <character file="nils.png">Nils</character>
 </characters>
