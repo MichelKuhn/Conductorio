@@ -1,16 +1,170 @@
 <cards>
-    <card text="Der Minister braucht Geld." character="Tom">
-        <choiceLeft text="Geben">
+    <card text="Wir haben einen vielversprechenden Bewerber für die Anwaltsstelle gefunden." character="Tom">
+        <choiceLeft text="Stell ihn sofort ein.">
+            <money>-10</money>
+            <legal>10</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Dafür haben wir gerade kein Geld.">
+            <money>10</money>
+            <legal>-15</legal>
+            <satisfaction>-10</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Die Konkurrenz verklagt uns wegen Industriespionage. Natürlich unbegründet." character="Tom">
+        <choiceLeft text="Lass das unsere Anwälte regeln.">
+            <money>0</money>
+            <legal>-15</legal>
+            <satisfaction>0</satisfaction>
+            <influence>10</influence>
+        </choiceLeft>
+        <choiceRight text="Ignoriere die Spinner.">
+            <money>-15</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>-10</influence>
+        </choiceRight>
+    </card>
+    <card text="Ich sollte unsere Management Hirarchien neu strukturieren." character="Tom">
+        <choiceLeft text="Solange ich am Ende noch entscheiden kann...">
+            <money>-5</money>
+            <legal>10</legal>
+            <satisfaction>0</satisfaction>
+            <influence>5</influence>
+        </choiceLeft>
+        <choiceRight text="Das alte System hat sich bewährt.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>-5</influence>
+        </choiceRight>
+    </card>
+    <card text="Ich könnte da ein paar Zahlen bei den Ausgaben herumschubsen. Dürfte einiges an Geld sparen." character="Nils">
+        <choiceLeft text="Mach ruhig.">
+            <money>20</money>
+            <legal>-20</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Auf keinen Fall.">
+            <money>-5</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Sie brauchen mal wieder einen neuen Anzug. Ich würde dunkelgrau empfehlen." character="Nils">
+        <choiceLeft text="Dann kauf halt.">
+            <money>-5</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>5</influence>
+        </choiceLeft>
+        <choiceRight text="Ich habe keine Zeit für so einen Unsinn.">
+            <money>1</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Monatliche Geschenke an die Mitarbeiter könnten für mehr Produktivität sorgen." character="Nils">
+        <choiceLeft text="Geschenke? Auf keinen Fall!">
+            <money>5</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Mach ruhig.">
+            <money>-15</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>5</influence>
+        </choiceRight>
+    </card>
+    <card text="Mit ein paar bezahlten Überstunden könnte ich unser Lagersystem deutlich verbessern." character="Jeff">
+        <choiceLeft text="Nein, dafür ist kein Geld da.">
+            <money>5</money>
+            <legal>0</legal>
+            <satisfaction>-15</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Ich bitte darum.">
+            <money>-25</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>15</influence>
+        </choiceRight>
+    </card>
+    <card text="Ich bin per Zufall in den Server der Konkurrenz eingedrungen. Darf ich unartig sein?" character="Jeff">
+        <choiceLeft text="Mach, solange das niemand merkt.">
+            <money>0</money>
+            <legal>-20</legal>
+            <satisfaction>10</satisfaction>
+            <influence>25</influence>
+        </choiceLeft>
+        <choiceRight text="Lass den Scheiß.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Unsere Werbekampagnen sind extrem veraltet. Ich könnte ein paar Models für einen neuen Spot besorgen." character="Jeff">
+        <choiceLeft text="Die alten Spots tun es doch auch.">
+            <money>5</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>-5</influence>
+        </choiceLeft>
+        <choiceRight text="Mach ruhig und gib den Rest für Koks aus.">
             <money>-10</money>
             <legal>0</legal>
             <satisfaction>0</satisfaction>
-            <influence>20</influence>
+            <influence>15</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir sollten mal wieder etwas Geld spenden. Was halten Sie von einer Aktion gegen Rassismus?" character="Marla">
+        <choiceLeft text="Geld für Neger? Bin dabei.">
+            <money>-10</money>
+            <legal>5</legal>
+            <satisfaction>5</satisfaction>
+            <influence>5</influence>
         </choiceLeft>
-        <choiceRight text="Nicht geben.">
+        <choiceRight text="Investiere das Geld lieber in Kryptowährungen.">
+            <money>10</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>-15</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir sollten unseren Pressetext umschreiben, so dass er Genderneutral ist." character="Marla">
+        <choiceLeft text="Nein">
             <money>0</money>
             <legal>0</legal>
-            <satisfaction>-10</satisfaction>
+            <satisfaction>0</satisfaction>
             <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Wenn du sonst nichts besseres zu tun hast.">
+            <money>-10</money>
+            <legal>0</legal>
+            <satisfaction>1</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir sollten endlich Firmenwerte festlegen." character="Marla">
+        <choiceLeft text="Wir haben keine Zeit für so einen Blödsinn.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Mach halt, mir egal.">
+            <money>-5</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>5</influence>
         </choiceRight>
     </card>
 </cards>

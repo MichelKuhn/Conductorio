@@ -66,8 +66,8 @@ public class GameScreen implements Screen {
         textField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT, new Texture(Gdx.files.internal("textfield.jpg")));
         statsField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS, new Texture(Gdx.files.internal("stats.jpg")));
 
-        leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
-        rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, "Die Aktion durchführen");
+        leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, card.getLeft().getText());
+        rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, card.getRight().getText());
 
         Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
             @Override
@@ -110,7 +110,7 @@ public class GameScreen implements Screen {
     }
 
     private void drawStatsAndStuff() {
-        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight());
+        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight(), Constants.DUDE_BOX_SIZE - Constants.BORDER * 2, 10, true);
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getMoney()), getWriteStartX(), getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getLegal()), getWriteStartX() + Constants.STATS_ROOM, getStatsWriteHeight());
         game.font.draw(game.batch, Integer.toString(Player.getInstance().getSatisfaction()), getWriteStartX()+ Constants.STATS_ROOM * 2, getStatsWriteHeight());
