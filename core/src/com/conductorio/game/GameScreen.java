@@ -21,6 +21,12 @@ public class GameScreen implements Screen {
     private final Conductorio game;
     private OrthographicCamera camera;
 
+    private int DUDE_BOX_SIZE;
+    private int BORDER;
+    private int FONT_BORDER;
+    private int VALUE_COUNTER_SIZE;
+    private int CHOICE_BOX_SIZE;
+
     private DudeField dudeField;
     private FieldBackground textField;
 
@@ -36,19 +42,19 @@ public class GameScreen implements Screen {
     private Side pickedSide;
 
     private int getTextfieldWriteHeight() {
-        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT - Constants.BORDER;
+        return CHOICE_BOX_SIZE + DUDE_BOX_SIZE + VALUE_COUNTER_SIZE + CHOICE_BOX_SIZE - BORDER;
     }
 
     private int getStatsWriteHeight() {
-        return Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT + Constants.TEXTFIELD_HEIGHT + Constants.TEXT_TO_STATS;
+        return CHOICE_BOX_SIZE + DUDE_BOX_SIZE + VALUE_COUNTER_SIZE + CHOICE_BOX_SIZE + VALUE_COUNTER_SIZE;
     }
 
     private int getWriteStartX() {
-        return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.BORDER;
+        return (Constants.SCREEN_WIDTH - DUDE_BOX_SIZE) / 2 + BORDER;
     }
 
     private int getStatsStartX(int borderNumbers) {
-        return (Constants.SCREEN_WIDTH - Constants.DUDE_BOX_SIZE) / 2 + Constants.STATS_BORDER * borderNumbers;
+        return (Constants.SCREEN_WIDTH - DUDE_BOX_SIZE) / 2 + VALUE_COUNTER_SIZE * borderNumbers;
     }
 
     private void drawNewCard() {
@@ -75,21 +81,27 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
+        DUDE_BOX_SIZE = 256;//(int) game.getWidth() / 1.25;
+        BORDER = game.getWidth() / 20;
+        FONT_BORDER = BORDER / 2;
+        VALUE_COUNTER_SIZE = BORDER * 2;
+        CHOICE_BOX_SIZE = VALUE_COUNTER_SIZE * 3;
+
         if (game.tutorial) {
             Player.getInstance().setTutorial();
         }
 
         card = Player.getInstance().getCard();
 
-        dudeField = new DudeField(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE, card.getCharacter());
-        textField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - Constants.DUDE_BOX_SIZE / 2, Constants.FLOOR_TO_DUDE + Constants.DUDE_BOX_SIZE + Constants.DUDE_TO_TEXT, new Texture(Gdx.files.internal("textfield.jpg")));
+        dudeField = new DudeField(Constants.SCREEN_WIDTH / 2 - DUDE_BOX_SIZE / 2, CHOICE_BOX_SIZE, card.getCharacter());
+        textField = new FieldBackground(Constants.SCREEN_WIDTH / 2 - DUDE_BOX_SIZE / 2, CHOICE_BOX_SIZE + DUDE_BOX_SIZE + VALUE_COUNTER_SIZE, new Texture(Gdx.files.internal("textfield.jpg")));
 
         moneyCounter = new ValueCounter(getStatsStartX(1), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/money.png")), new Texture(Gdx.files.internal("statsTextures/moneyWhite.png")));
         legalCounter = new ValueCounter(getStatsStartX(5), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/legal.png")), new Texture(Gdx.files.internal("statsTextures/legalWhite.png")));
         satisfactionCounter = new ValueCounter(getStatsStartX(9), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/satisfaction.png")), new Texture(Gdx.files.internal("statsTextures/satisfactionWhite.png")));
         influenceCounter = new ValueCounter(getStatsStartX(13), getStatsWriteHeight(), new Texture(Gdx.files.internal("statsTextures/influence.png")), new Texture(Gdx.files.internal("statsTextures/influenceWhite.png")));
-        leftBox = new TextBox(Constants.BORDER, getTextfieldWriteHeight() - 64, card.getLeft().getText());
-        rightBox = new TextBox(Constants.SCREEN_WIDTH - Constants.BORDER - Constants.CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, card.getRight().getText());
+        leftBox = new TextBox(BORDER, getTextfieldWriteHeight() - 64, card.getLeft().getText());
+        rightBox = new TextBox(Constants.SCREEN_WIDTH - BORDER - CHOICE_BOX_SIZE, getTextfieldWriteHeight() - 64, card.getRight().getText());
 
         Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
             @Override
@@ -114,7 +126,7 @@ public class GameScreen implements Screen {
 
     private void renderBackgroundBoxes() {
         game.batch.begin();
-        game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY(), Constants.DUDE_BOX_SIZE, Constants.DUDE_BOX_SIZE);
+        game.batch.draw(dudeField.getFace(), dudeField.getX(), dudeField.getY(), DUDE_BOX_SIZE, DUDE_BOX_SIZE);
         game.batch.draw(textField.getTexture(), textField.getX(), textField.getY());
         game.batch.end();
     }
@@ -123,20 +135,20 @@ public class GameScreen implements Screen {
         game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         game.shapeRenderer.setColor(Color.DARK_GRAY);
         if (pickedSide == Side.LEFT) {
-            game.shapeRenderer.rect(leftBox.getX(), leftBox.getY() - Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE);
+            game.shapeRenderer.rect(leftBox.getX(), leftBox.getY() - CHOICE_BOX_SIZE, CHOICE_BOX_SIZE, CHOICE_BOX_SIZE);
         } else if (pickedSide == Side.RIGHT) {
-            game.shapeRenderer.rect(rightBox.getX(), rightBox.getY() - Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE, Constants.CHOICE_BOX_SIZE);
+            game.shapeRenderer.rect(rightBox.getX(), rightBox.getY() - CHOICE_BOX_SIZE, CHOICE_BOX_SIZE, CHOICE_BOX_SIZE);
         }
         game.shapeRenderer.end();
     }
 
     private void drawValueCounter(ValueCounter valueCounter) {
-        game.batch.draw(valueCounter.getTextureWhite(), valueCounter.getX(), valueCounter.getY(), Constants.VALUE_COUNTER_SIZE, Constants.VALUE_COUNTER_SIZE);
-        game.batch.draw(valueCounter.getTexture(), valueCounter.getX(), valueCounter.getY() + valueCounter.getValueInPx(), 0, 0, Constants.VALUE_COUNTER_SIZE, Constants.VALUE_COUNTER_SIZE - valueCounter.getValueInPx());
+        game.batch.draw(valueCounter.getTextureWhite(), valueCounter.getX(), valueCounter.getY(), VALUE_COUNTER_SIZE, VALUE_COUNTER_SIZE);
+        game.batch.draw(valueCounter.getTexture(), valueCounter.getX(), valueCounter.getY() + valueCounter.getValueInPx(), 0, 0, VALUE_COUNTER_SIZE, VALUE_COUNTER_SIZE - valueCounter.getValueInPx());
     }
 
     private void drawStatsAndStuff() {
-        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight(), Constants.DUDE_BOX_SIZE - Constants.BORDER * 2, 10, true);
+        game.font.draw(game.batch, card.getText(), getWriteStartX(), getTextfieldWriteHeight(), DUDE_BOX_SIZE - BORDER * 2, 10, true);
         drawValueCounter(moneyCounter);
         drawValueCounter(legalCounter);
         drawValueCounter(satisfactionCounter);
@@ -145,9 +157,9 @@ public class GameScreen implements Screen {
 
     private void drawChoiceText() {
         if (pickedSide == Side.LEFT) {
-            game.font.draw(game.batch, leftBox.getText(), leftBox.getX() + Constants.FONT_BORDER, leftBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
+            game.font.draw(game.batch, leftBox.getText(), leftBox.getX() + FONT_BORDER, leftBox.getY() - FONT_BORDER, CHOICE_BOX_SIZE, 10, true);
         } else if (pickedSide == Side.RIGHT) {
-            game.font.draw(game.batch, rightBox.getText(), rightBox.getX() + Constants.FONT_BORDER, rightBox.getY() - Constants.FONT_BORDER, Constants.CHOICE_BOX_SIZE, 10, true);
+            game.font.draw(game.batch, rightBox.getText(), rightBox.getX() + FONT_BORDER, rightBox.getY() - FONT_BORDER, CHOICE_BOX_SIZE, 10, true);
         }
     }
 

@@ -11,6 +11,7 @@ public class DesktopLauncher {
 		config.title = "Conductorio";
 		config.height = Constants.SCREEN_HEIGHT;
 		config.width = Constants.SCREEN_WIDTH;
+
 		new LwjglApplication(new Conductorio(), config);
 	}
 }

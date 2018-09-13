@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Conductorio extends Game {
+	private int width;
+	private int height;
 	public SpriteBatch batch;
 	public BitmapFont font;
 	public ShapeRenderer shapeRenderer;
@@ -27,5 +29,21 @@ public class Conductorio extends Game {
 		batch.dispose();
 		font.dispose();
 		shapeRenderer.dispose();
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }
