@@ -18,11 +18,11 @@ public class CardDeckLoader {
     private HashMap<String, Character> characters;
     private ArrayList<Card> cards;
 
-    private Iterator getIteratorFromFile(String thing) {
-        FileHandle fileHandle = Gdx.files.internal("xml/" + thing + ".xml");
+    private Iterator getIteratorFromFile(String filename, String elementName) {
+        FileHandle fileHandle = Gdx.files.internal("xml/" + filename);
         XmlReader.Element element = xmlReader.parse(fileHandle);
 
-        return element.getChildrenByName(thing).iterator();
+        return element.getChildrenByName(elementName).iterator();
     }
 
     private Character getCharacterFromXml(XmlReader.Element node) {
@@ -56,14 +56,14 @@ public class CardDeckLoader {
         characters = new HashMap<String, Character>();
         cards = new ArrayList<Card>();
 
-        Iterator characterIterator = getIteratorFromFile("character");
+        Iterator characterIterator = getIteratorFromFile("characters.xml", "character");
         while(characterIterator.hasNext()) {
             XmlReader.Element characterElement = (XmlReader.Element)characterIterator.next();
             Character charTemp = getCharacterFromXml(characterElement);
             characters.put(charTemp.getName(), charTemp);
         }
 
-        Iterator cardIterator = getIteratorFromFile("card");
+        Iterator cardIterator = getIteratorFromFile("cards.xml", "card");
         while(cardIterator.hasNext()){
             XmlReader.Element cardElement = (XmlReader.Element)cardIterator.next();
             cards.add(getCardFromXlm(cardElement));
@@ -72,5 +72,17 @@ public class CardDeckLoader {
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public ArrayList<Card> getTutorial() {
+        ArrayList<Card> tutorial = new ArrayList<Card>();
+
+        Iterator cardIterator = getIteratorFromFile("tutorial.xml", "card");
+        while(cardIterator.hasNext()){
+            XmlReader.Element cardElement = (XmlReader.Element)cardIterator.next();
+            tutorial.add(getCardFromXlm(cardElement));
+        }
+
+        return tutorial;
     }
 }

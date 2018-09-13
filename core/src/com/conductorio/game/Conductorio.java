@@ -9,11 +9,13 @@ public class Conductorio extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	public ShapeRenderer shapeRenderer;
+	public boolean tutorial;
 
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		shapeRenderer = new ShapeRenderer();
+		tutorial = true;
 		this.setScreen(new MainMenuScreen(this));
 	}
 

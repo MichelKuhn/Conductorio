@@ -9,21 +9,52 @@ import java.util.Random;
 
 public class CardStash {
     private Random rand;
+    private GameMode gameMode;
+
+    private CardDeckLoader cardDeckLoader;
     private ArrayList<Card> basicCards;
+    private ArrayList<Card> tutorialCards;
 
     CardStash() {
         rand  = new Random();
 
-        CardDeckLoader cardDeckLoader = new CardDeckLoader();
+        cardDeckLoader = new CardDeckLoader();
         basicCards = cardDeckLoader.getCards();
+        tutorialCards = cardDeckLoader.getTutorial();
     }
 
-    public Card drawCard() {
+    private Card drawBasicCard() {
         int cardNumber = rand.nextInt(basicCards.size());
         Card returnCard =  basicCards.get(cardNumber);
         basicCards.remove(cardNumber);
 
+        if (basicCards.isEmpty()) {
+            basicCards = cardDeckLoader.getCards();
+        }
+
         return returnCard;
+    }
+
+    private Card drawTutorialCard() {
+        if (tutorialCards.isEmpty()) {
+            gameMode = GameMode.BASIC;
+            return drawBasicCard();
+        }
+
+        Card returnCard =  tutorialCards.get(0);
+        tutorialCards.remove(0);
+
+        return returnCard;
+    }
+
+    public Card drawCard() {
+        switch (gameMode) {
+            case TUTORIAL:
+                return drawTutorialCard();
+
+            default:
+                return drawBasicCard();
+        }
     }
 
     public Card getLoserCard(Category category) {
@@ -42,5 +73,9 @@ public class CardStash {
             default:
                 return null;
         }
+    }
+
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
     }
 }

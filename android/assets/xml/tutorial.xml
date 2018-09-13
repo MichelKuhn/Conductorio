@@ -1,0 +1,142 @@
+<cards>
+    <card text="Mein Name ist Tom, Manager. Wenn du eine Seite des Bildschirms berührst, siehst du deine Antwortmöglichkeiten." character="Tom">
+        <choiceLeft text="Swipe links.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Swipe rechts.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Deine Entscheidung beeinflusst die Werte da oben. Willst du mir für diese Info einen Bonus geben?" character="Tom">
+        <choiceLeft text="Hier, dein Bonus.">
+            <money>-5</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Ist doch dein Job.">
+            <money>5</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Guten Tag, ich bin Nils Nilson, Chief Financial Officer. Freut mich, Sie kennenzulernen." character="Nils">
+        <choiceLeft text="Guten Tag.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>1</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Was geht ab?">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-1</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Wichtig ist, das keiner der Werte unter null fällt. Mir liegen dabei aber besonders die Finanzen ganz links am Herzen." character="Nils">
+        <choiceLeft text="Sie haben ein Herz?">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Alles klar.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Noch wichtiger ist unser Verhältnis zum Gesetz, der zweite Wert von links." character="Tom">
+        <choiceLeft text="Natürlich.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Gesetze? Ach, da war ja was...">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Hallo, ich bin Marla, Leiterin der HR Abteilung. Sind Sie gut angekommen?" character="Marla">
+        <choiceLeft text="Alles super.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>1</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Wen juckts?">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-1</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Achten Sie bitte besonders auf die Mitarbeiterzufriedenheit. Der dritte Wert von Links." character="Marla">
+        <choiceLeft text="Hatte ich vor.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>1</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Blah, blah...">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-1</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Hi, mein Name ist Jeff. IT. Mögen Sie Cartoons?" character="Jeff">
+        <choiceLeft text="Dein Ernst?">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-1</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Weed, Cartoons and Cerial, maaaaan">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>1</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Nicht so wichtig. Aber behalte bitte die Produktivität, den rechten Wert, im Auge." character="Jeff">
+        <choiceLeft text="Ja, ja...">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Ihr habt ja alle Ansprüche.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Dann können Sie ja mit dem Führen beginnen." character="Tom">
+        <choiceLeft text="Sollte das witzig sein?">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="ok">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+</cards>

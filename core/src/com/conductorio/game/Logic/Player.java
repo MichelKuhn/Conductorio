@@ -25,13 +25,13 @@ public class Player {
     }
 
     public Card getCard() {
-        if(money <= 0) {
+        if (money <= 0) {
             return (cardStash.getLoserCard(Category.MONEY));
         } else if (legal <= 0) {
             return (cardStash.getLoserCard(Category.LEGAL));
-        }else if (satisfaction <= 0) {
+        } else if (satisfaction <= 0) {
             return (cardStash.getLoserCard(Category.SATISFACTION));
-        }else if (influence <= 0) {
+        } else if (influence <= 0) {
             return (cardStash.getLoserCard(Category.INFLUENCE));
         } else {
             return cardStash.drawCard();
@@ -84,5 +84,9 @@ public class Player {
 
     public static void reset() {
         instance = new Player();
+    }
+
+    public void setTutorial() {
+        cardStash.setGameMode(GameMode.TUTORIAL);
     }
 }

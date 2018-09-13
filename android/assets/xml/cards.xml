@@ -13,6 +13,20 @@
             <influence>0</influence>
         </choiceRight>
     </card>
+    <card text="Unsere Rechtsabteilung verlangt nach einer Gehaltserhöhung." character="Tom">
+        <choiceLeft text="Gib ihnen halt einen Bonus.">
+            <money>-10</money>
+            <legal>15</legal>
+            <satisfaction>0</satisfaction>
+            <influence>5</influence>
+        </choiceLeft>
+        <choiceRight text="Wie wäre es mit Nein?">
+            <money>10</money>
+            <legal>-10</legal>
+            <satisfaction>0</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
     <card text="Die Konkurrenz verklagt uns wegen Industriespionage. Natürlich unbegründet." character="Tom">
         <choiceLeft text="Lass das unsere Anwälte regeln.">
             <money>0</money>
@@ -55,6 +69,20 @@
             <influence>0</influence>
         </choiceRight>
     </card>
+    <card text="Ich könnte noch ein paar Tausender an den Büchern vorbei rechnen - Interesse?" character="Nils">
+        <choiceLeft text="Pst, her damit.">
+            <money>30</money>
+            <legal>-20</legal>
+            <satisfaction>-10</satisfaction>
+            <influence>-10</influence>
+        </choiceLeft>
+        <choiceRight text="Würde mir nicht im Traum einfallen.">
+            <money>-10</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>5</influence>
+        </choiceRight>
+    </card>
     <card text="Sie brauchen mal wieder einen neuen Anzug. Ich würde dunkelgrau empfehlen." character="Nils">
         <choiceLeft text="Dann kauf halt.">
             <money>-5</money>
@@ -95,6 +123,20 @@
             <legal>0</legal>
             <satisfaction>5</satisfaction>
             <influence>15</influence>
+        </choiceRight>
+    </card>
+    <card text="Unsere Server sollten endlich mit einer gescheiten Firewall gesichert werden." character="Jeff">
+        <choiceLeft text="Gib dein Bestes.">
+            <money>-15</money>
+            <legal>5</legal>
+            <satisfaction>10</satisfaction>
+            <influence>10</influence>
+        </choiceLeft>
+        <choiceRight text="Nur das Nötigste bitte.">
+            <money>-5</money>
+            <legal>0</legal>
+            <satisfaction>0</satisfaction>
+            <influence>5</influence>
         </choiceRight>
     </card>
     <card text="Ich bin per Zufall in den Server der Konkurrenz eingedrungen. Darf ich unartig sein?" character="Jeff">
@@ -165,6 +207,20 @@
             <legal>0</legal>
             <satisfaction>5</satisfaction>
             <influence>5</influence>
+        </choiceRight>
+    </card>
+    <card text="Unsere Mitarbeiter bitten um mehr Urlaubstage." character="Marla">
+        <choiceLeft text="Und ich bitte um ewiges Leben. Gibt mir auch keiner.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Zwei Tage mehr sollten passen.">
+            <money>-15</money>
+            <legal>0</legal>
+            <satisfaction>25</satisfaction>
+            <influence>15</influence>
         </choiceRight>
     </card>
 </cards>
