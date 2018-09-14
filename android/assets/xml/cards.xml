@@ -13,6 +13,34 @@
             <influence>0</influence>
         </choiceRight>
     </card>
+    <card text="Wir könnten einige unbezahlte Praktikanten einstellen, um unser Lager endlich aufzuräumen." character="Tom">
+        <choiceLeft text="Gute Idee.">
+            <money>0</money>
+            <legal>10</legal>
+            <satisfaction>-10</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Das regelt sich schon selbst...">
+            <money>10</money>
+            <legal>-10</legal>
+            <satisfaction>10</satisfaction>
+            <influence>-5</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir sollten unseren Mitarbeitern Aktienanteile verkaufen, um sie an das Unternehmen zu binden." character="Tom">
+        <choiceLeft text="Na dann los.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>10</satisfaction>
+            <influence>0</influence>
+        </choiceLeft>
+        <choiceRight text="Ne, die Anteile bleiben schön bei mir.">
+            <money>10</money>
+            <legal>0</legal>
+            <satisfaction>-10</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
     <card text="Wir könnten einen Vertrag mit einem Zulieferer in Afrika schließen. Die arbeiten quasi für umsonst." character="Tom">
         <choiceLeft text="Umsonst klingt doch gut.">
             <money>15</money>
@@ -97,6 +125,34 @@
             <influence>0</influence>
         </choiceRight>
     </card>
+    <card text="Einige Mitarbeiter sind heute in Hoodies erschienen. Sie sollten etwas dagegen sagen." character="Nils">
+        <choiceLeft text="Hast du sonst nichts zu tun?">
+            <money>0</money>
+            <legal>-5</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>-5</influence>
+        </choiceLeft>
+        <choiceRight text="Ich schreibe mal eine Mail...">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir sollten unsere Buchhaltung zu einem Softwareseminar schicken. Wir könnten so viel schneller arbeiten." character="Nils">
+        <choiceLeft text="Unnötige Kosten.">
+            <money>5</money>
+            <legal>-5</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>-10</influence>
+        </choiceLeft>
+        <choiceRight text="Drei von euch können hin.">
+            <money>-20</money>
+            <legal>5</legal>
+            <satisfaction>15</satisfaction>
+            <influence>10</influence>
+        </choiceRight>
+    </card>
     <card text="Ich bräuchte ein paar Daten aus dem Archiv. Dürfte ich mir dafür einen Tag Zeit nehmen?" character="Nils">
         <choiceLeft text="Wenns denn sein muss.">
             <money>-5</money>
@@ -179,6 +235,34 @@
             <legal>0</legal>
             <satisfaction>5</satisfaction>
             <influence>15</influence>
+        </choiceRight>
+    </card>
+    <card text="Unsere Admins wären glücklicher, wenn wir das Alkoholverbot in der Mittagspause aufheben würden." character="Jeff">
+        <choiceLeft text="Niemals.">
+            <money>5</money>
+            <legal>5</legal>
+            <satisfaction>-15</satisfaction>
+            <influence>-5</influence>
+        </choiceLeft>
+        <choiceRight text="Solange ihr eure Arbeit macht...">
+            <money>0</money>
+            <legal>-10</legal>
+            <satisfaction>15</satisfaction>
+            <influence>5</influence>
+        </choiceRight>
+    </card>
+    <card text="Es wäre mal wieder Zeit für ein paar neue PCs..." character="Jeff">
+        <choiceLeft text="Wir haben kein Geld für Spielereien.">
+            <money>5</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>-5</influence>
+        </choiceLeft>
+        <choiceRight text="Stell halt was zusammen.">
+            <money>-15</money>
+            <legal>0</legal>
+            <satisfaction>10</satisfaction>
+            <influence>10</influence>
         </choiceRight>
     </card>
     <card text="Unsere Server sollten endlich mit einer gescheiten Firewall gesichert werden." character="Jeff">
@@ -333,6 +417,34 @@
             <legal>0</legal>
             <satisfaction>15</satisfaction>
             <influence>-10</influence>
+        </choiceRight>
+    </card>
+    <card text="Einige Mitglieder der IT Abteilung sind heute high zur Arbeit erschienen." character="Marla">
+        <choiceLeft text="Entlasse die Spinner sofort.">
+            <money>10</money>
+            <legal>5</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>-10</influence>
+        </choiceLeft>
+        <choiceRight text="Erkläre ihnen, dass sowas nicht geht.">
+            <money>0</money>
+            <legal>-5</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>0</influence>
+        </choiceRight>
+    </card>
+    <card text="Wir könnten T-Shirts mit Firmenlogo drucken und sie an unsere Mitarbeiter verteilen." character="Marla">
+        <choiceLeft text="Du könntest stattdessen auch irgendwas sinnvolles machen.">
+            <money>0</money>
+            <legal>0</legal>
+            <satisfaction>-5</satisfaction>
+            <influence>5</influence>
+        </choiceLeft>
+        <choiceRight text="Druck halt ein paar..">
+            <money>-10</money>
+            <legal>0</legal>
+            <satisfaction>5</satisfaction>
+            <influence>5</influence>
         </choiceRight>
     </card>
 </cards>

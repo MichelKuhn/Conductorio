@@ -26,8 +26,8 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Conductorio", 10, 150);
-        game.font.draw(game.batch, "Der Titel ist Müll, tipp einfach.", 10, 100);
+        game.font.draw(game.batch, "Conductorio", game.getWidth() / 12, game.getHeight() / 6 , game.getWidth() / 2, 10, true);
+        game.font.draw(game.batch, "Der Titel ist Müll, tipp einfach.", game.getWidth() / 12, game.getHeight() / 6 , game.getWidth() / 2, 10, true);
         game.batch.end();
 
         if (Gdx.input.isTouched()) {
