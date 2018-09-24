@@ -1,12 +1,12 @@
-package com.conductorio.game.Techstuff;
+package com.conductorio.game.techstuff;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.XmlReader;
-import com.conductorio.game.Logic.Card;
-import com.conductorio.game.Logic.Character;
-import com.conductorio.game.Logic.Choice;
+import com.conductorio.game.logic.Card;
+import com.conductorio.game.logic.Character;
+import com.conductorio.game.logic.Choice;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.conductorio.game.Logic;
+package com.conductorio.game.logic;
 
 public class LoserChoice extends Choice {
     LoserChoice() {

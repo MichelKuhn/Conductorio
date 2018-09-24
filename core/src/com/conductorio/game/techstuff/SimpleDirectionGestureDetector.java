@@ -1,4 +1,4 @@
-package com.conductorio.game.Techstuff;
+package com.conductorio.game.techstuff;
 
 import com.badlogic.gdx.input.GestureDetector;
 

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.conductorio.game.Techstuff.CardDeckLoader;
 
 public class MainMenuScreen implements Screen {
     private final Conductorio game;

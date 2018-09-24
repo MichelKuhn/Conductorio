@@ -1,4 +1,4 @@
-package com.conductorio.game.Widgets;
+package com.conductorio.game.widgets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;

@@ -1,4 +1,4 @@
-package com.conductorio.game.Widgets;
+package com.conductorio.game.widgets;
 
 public class TextBox extends Widget {
     private String text;

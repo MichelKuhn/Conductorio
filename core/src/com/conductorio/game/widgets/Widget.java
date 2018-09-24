@@ -1,4 +1,4 @@
-package com.conductorio.game.Widgets;
+package com.conductorio.game.widgets;
 
 public class Widget {
     private int x;

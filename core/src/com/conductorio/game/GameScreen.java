@@ -5,17 +5,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
-import com.conductorio.game.Logic.Card;
-import com.conductorio.game.Logic.Player;
-import com.conductorio.game.Logic.Side;
-import com.conductorio.game.Techstuff.SimpleDirectionGestureDetector;
-import com.conductorio.game.Widgets.DudeField;
-import com.conductorio.game.Widgets.FieldBackground;
-import com.conductorio.game.Widgets.TextBox;
-import com.conductorio.game.Widgets.ValueCounter;
+import com.conductorio.game.logic.Card;
+import com.conductorio.game.logic.Player;
+import com.conductorio.game.logic.Side;
+import com.conductorio.game.techstuff.SimpleDirectionGestureDetector;
+import com.conductorio.game.widgets.DudeField;
+import com.conductorio.game.widgets.TextBox;
+import com.conductorio.game.widgets.ValueCounter;
 
 public class GameScreen implements Screen {
     private final Conductorio game;

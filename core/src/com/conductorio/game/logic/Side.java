@@ -1,4 +1,4 @@
-package com.conductorio.game.Logic;
+package com.conductorio.game.logic;
 
 public enum Side {
     LEFT, RIGHT, NONE

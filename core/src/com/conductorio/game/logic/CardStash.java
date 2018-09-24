@@ -1,8 +1,8 @@
-package com.conductorio.game.Logic;
+package com.conductorio.game.logic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.conductorio.game.Techstuff.CardDeckLoader;
+import com.conductorio.game.techstuff.CardDeckLoader;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.conductorio.game.Logic;
+package com.conductorio.game.logic;
 
 public enum GameMode {
     BASIC, TUTORIAL
